@@ -17,8 +17,8 @@ class poder{
     void setNombre(string);
     void setCantidadPoder(int);
     //Constructor y destructor
-    poder(string,int);
-    ~poder();
+    poder(string,int); //Nombre, cantidad de poder
+    virtual ~poder();
 };
 
 #endif
