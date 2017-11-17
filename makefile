@@ -1,5 +1,5 @@
-run:	main.o poder.o ofensivo.o persona.o airbender.o
-	g++ main.o poder.o ofensivo.o persona.o airbender.o -o run
+run:	main.o poder.o ofensivo.o defensivo.o persona.o airbender.o
+	g++ main.o poder.o ofensivo.o defensivo.o persona.o airbender.o -o run
 
 main.o:	poder.h ofensivo.h persona.h airbender.h  main.cpp
 	g++ -c main.cpp
@@ -9,6 +9,9 @@ poder.o:	poder.h poder.cpp
 
 ofensivo.o:	ofensivo.h ofensivo.cpp
 	g++ -c ofensivo.cpp
+
+defensivo.o:	defensivo.h defensivo.cpp
+	g++ -c defensivo.cpp
 
 persona.o:	persona.h persona.cpp
 	g++ -c persona.cpp

@@ -1,4 +1,4 @@
-#include "poder.h"
+#include "defensivo.h"
 
 //Getters
 int defensivo::getDuracion(){
