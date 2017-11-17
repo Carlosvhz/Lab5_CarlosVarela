@@ -5,9 +5,9 @@
 using namespace std;
 
 //Prototipo
-void guardarArchivo(persona*);
+void guardarArchivo(vector);
 void agregar();
-void set
+void listar();
 
 
 int main(){
