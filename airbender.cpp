@@ -4,9 +4,15 @@
 using namespace std;
 
 airbender::airbender(string pnombre, string pnacion, int pedad, char psexo, int pcantidadPelo, string colorFlechas)
-                                                                                :persona(pnombre,pnacion,pedad,psexo){
+                                                                        :persona(pnombre,pnacion,pedad,psexo){
   CanPelo = pcantidadPelo;                                                       //nombre,nacion,edad,sexo,cantidadPelo,colorFlechas
   colorFlechas = colorFlechas;
+}
+airbender::airbender(string pnombre, string pnacion, int pedad, char psexo, int pcantidadPelo, string colorFlechas, poder* po)
+                                                                        :persona(pnombre,pnacion,pedad,psexo){
+  CanPelo = pcantidadPelo;                                                       //nombre,nacion,edad,sexo,cantidadPelo,colorFlechas
+  colorFlechas = colorFlechas;
+  tipoPoder = po;
 }
 
 //Getters

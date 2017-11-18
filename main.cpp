@@ -18,6 +18,7 @@ using namespace std;
 void guardarArchivo(vector<persona*>);
 vector<persona*> agregar(vector<persona*>);
 vector<persona*> eliminar(vector<persona*>);
+poder* darPoder();
 
 int main(){
   char resp;
@@ -63,9 +64,7 @@ vector<persona*> agregar(vector<persona*> lista){
   int numero,edad;
   char sexo;
   string nombre,nacion;
-  //Poder
-  int numeroPoder,cantidadFuerza;
-  string nombrePoder;
+  poder* ponerPoder;
   //=====================Agregar Maestro
   cout<<" ____ Agregar____ "<<endl
       <<"1. Agregar Air Bender "<<endl
@@ -87,92 +86,9 @@ vector<persona*> agregar(vector<persona*> lista){
   cin>>edad;
   cout<<"- Ingrese sexo[f/m]: ";
   cin>>sexo;
-  //___________Poder_____________
-  cout<<" == Tipo de poder == "<<endl
-      <<"1. Tipo ofensivo "<<endl
-      <<"2. Tipo defensivo "<<endl
-      <<"3. Tipo curativo "<<endl
-      <<"4. Tipo invocacion "<<endl
-      <<"Ingrese opcion: ";
-  cin>>numeroPoder;
-  while(numeroPoder<0||numeroPoder>4){
-    cout<<"= Ingrese de nuevo el numero: ";
-    cin>>numeroPoder;
-  }
-  cout<<"Ingrese el nombre del poder: ";
-  cin>>nombrePoder;
-  cout<<"Ingrese la cantidad de poder: ";
-  cin>>cantidadFuerza;
-  cout<<endl;
-  switch(numeroPoder){
-    case 1:{
-      int rango, fuerza;
-      cout<<"___ Ofensivo ___"<<endl;
-      cout<<"Ingrese el rango: ";
-      cin>>rango;
-      cout<<"Ingrese la fuerza: ";
-      cin>>fuerza;
-      poder* ponerPoder = new ofensivo(nombrePoder,cantidadFuerza,rango,fuerza);
-    }
-    break;
-    case 2:{
-      int resistencia, duracion;
-      cout<<"___ Defensivos ___"<<endl;
-      cout<<"Ingrese resistencia: ";
-      cin>>resistencia;
-      cout<<"Ingrese duracion: ";
-      cin>>duracion;
-      poder* ponerPoder = new defensivo(nombrePoder,cantidadFuerza,duracion,resistencia);
-    }
-    break;
-    case 3:{
-      int num;
-      cout<<"___ Curativos ___"<<endl;
-      cout<<"1. Golpes"<<endl
-          <<"2. Cortadas"<<endl
-          <<"3. Quemaduras"<<endl
-          <<"Ingrese la opcion: ";
-      cin>>num;
-      while(num<1||num>3){
-        cout<<"Ingrese de nuevo el numero: ";
-        cin>>num;
-      }
-      if(num==1){
-        poder* ponerPoder = new curativo(nombrePoder,cantidadFuerza,"Golpes");
-      }else if(num==2){
-        poder* ponerPoder = new curativo(nombrePoder,cantidadFuerza,"Cortadas");
-      }else if(num==3){
-        poder* ponerPoder = new curativo(nombrePoder,cantidadFuerza,"Quemaduras");
-      }
-    }
-    break;
-    case 4:{
-      int op;
-      string especie, nombre, habilidad;
-      cout<<"___ Invocacion ___"<<endl;
-      cout<<"Ingrese nombre: ";
-      cin>>nombre;
-      cout<<"Ingrese especie: ";
-      cin>>especie;
-      cout<<"Ingrese habilidad: ";
-      cin>>habilidad;
-      cout<<"1. Domestico "<<endl
-          <<"2. Guerra "<<endl
-          <<"Ingrese opcion: ";
-      cin>>op;
-      while(op<1||op>2){
-        cout<<"Ingrese de nuevo el numero: ";
-        cin>>op;
-      }
-      if(op==1){
-        poder* ponerPoder = new invocacion(nombrePoder,cantidadFuerza,nombre,especie,"Domestico");
-      }else if(op==2){
-        poder* ponerPoder = new invocacion(nombrePoder,cantidadFuerza,nombre,especie,"Guerra");
-      }
-    }
-    break;
-  }
+  ponerPoder = darPoder();
   //_________________________________
+  cout<<"=== Agregando tipo de maestro ====="<<endl;
   switch(numero){
     case 1:{
       airbender* maestro;
@@ -268,4 +184,96 @@ void guardarArchivo(vector<persona*> lista){
            <<"Sexo: "<<p->getSexo()<<endl;
   }
   archivo.close();
+}
+
+poder* darPoder(){
+  poder* ponerPoder;
+  string nombrePoder;
+  int numeroPoder, cantidadFuerza;
+  //___________Poder_____________
+  cout<<" == Tipo de poder == "<<endl
+      <<"1. Tipo ofensivo "<<endl
+      <<"2. Tipo defensivo "<<endl
+      <<"3. Tipo curativo "<<endl
+      <<"4. Tipo invocacion "<<endl
+      <<"Ingrese opcion: ";
+  cin>>numeroPoder;
+  while(numeroPoder<0||numeroPoder>4){
+    cout<<"= Ingrese de nuevo el numero: ";
+    cin>>numeroPoder;
+  }
+  cout<<"Ingrese el nombre del poder: ";
+  cin>>nombrePoder;
+  cout<<"Ingrese la cantidad de poder: ";
+  cin>>cantidadFuerza;
+  cout<<endl;
+  switch(numeroPoder){
+    case 1:{
+      int rango, fuerza;
+      cout<<"___ Ofensivo ___"<<endl;
+      cout<<"Ingrese el rango: ";
+      cin>>rango;
+      cout<<"Ingrese la fuerza: ";
+      cin>>fuerza;
+      ponerPoder = new ofensivo(nombrePoder,cantidadFuerza,rango,fuerza);
+    }
+    break;
+    case 2:{
+      int resistencia, duracion;
+      cout<<"___ Defensivos ___"<<endl;
+      cout<<"Ingrese resistencia: ";
+      cin>>resistencia;
+      cout<<"Ingrese duracion: ";
+      cin>>duracion;
+      ponerPoder = new defensivo(nombrePoder,cantidadFuerza,duracion,resistencia);
+    }
+    break;
+    case 3:{
+      int num;
+      cout<<"___ Curativos ___"<<endl;
+      cout<<"1. Golpes"<<endl
+          <<"2. Cortadas"<<endl
+          <<"3. Quemaduras"<<endl
+          <<"Ingrese la opcion: ";
+      cin>>num;
+      while(num<1||num>3){
+        cout<<"Ingrese de nuevo el numero: ";
+        cin>>num;
+      }
+      if(num==1){
+        ponerPoder = new curativo(nombrePoder,cantidadFuerza,"Golpes");
+      }else if(num==2){
+        ponerPoder = new curativo(nombrePoder,cantidadFuerza,"Cortadas");
+      }else if(num==3){
+        ponerPoder = new curativo(nombrePoder,cantidadFuerza,"Quemaduras");
+      }
+    }
+    break;
+    case 4:{
+      int op;
+      string especie, nombre, habilidad;
+      cout<<"___ Invocacion ___"<<endl;
+      cout<<"Ingrese nombre: ";
+      cin>>nombre;
+      cout<<"Ingrese especie: ";
+      cin>>especie;
+      cout<<"Ingrese habilidad: ";
+      cin>>habilidad;
+      cout<<"1. Domestico "<<endl
+          <<"2. Guerra "<<endl
+          <<"Ingrese opcion: ";
+      cin>>op;
+      while(op<1||op>2){
+        cout<<"Ingrese de nuevo el numero: ";
+        cin>>op;
+      }
+      if(op==1){
+        ponerPoder = new invocacion(nombrePoder,cantidadFuerza,nombre,especie,"Domestico");
+      }else if(op==2){
+        ponerPoder = new invocacion(nombrePoder,cantidadFuerza,nombre,especie,"Guerra");
+      }
+    }
+    break;
+  }
+  return ponerPoder;
 }
