@@ -1,5 +1,6 @@
 #include "persona.h"
 #include <string>
+#include "poder.h"
 
 using namespace std;
 

@@ -3,7 +3,6 @@
 
 #include <string>
 #include "persona.h"
-//#include "poder.h"
 
 using namespace std;
 
@@ -12,7 +11,7 @@ class airbender:public persona{
   private:
     int CanPelo;
     string colorFlechas;
-    //poder tipoPoder;
+    //poder* tipoPoder;
 
   public:
       //Getters
